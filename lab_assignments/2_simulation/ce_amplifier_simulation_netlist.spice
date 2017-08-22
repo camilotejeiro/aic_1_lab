@@ -1,0 +1,17 @@
+* Common-Emitter Amplifier Netlist
+
+.INCLUDE ce_amplifier_simulation_models.spice
+
+* Circuit Elements: Devices
+* dev   <nets>          <values>
+* ---------------------------------- 
+V1      n_pos 0         12V		
+C1      n_in  n1        10uF		
+R1      n_pos n1        100KR		
+R2      n1    0         24KR		
+Q1      n_out n1 n2     generic 
+R3      n_pos n_out     3.9KR		
+R4      n2    0         1KR		
+
+.END
+
