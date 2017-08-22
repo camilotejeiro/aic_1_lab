@@ -1,0 +1,23 @@
+RF switch circuit
+
+* Component Definitions
+Ci      in 4    1.6nF
+D1      4 5     mydiode
+Lc1     3 2     100uH
+Lc2     5 0     100e-6
+Rb      4 3     2.1k
+Rload   out 0   1000
+Rs      in 1    50ohm
+cout    5 out   1.6n
+vcc     2 0     5V
+vs      1 0     dc 0V ac 1V sin(0V 1V 100MegHz 20ns 0)
+
+* Model Definitions
+.model mydiode d (is=1e-15A n=1)
+
+* NG-Spice Simulation Commands
+.PRINT DC V(2,0) V(5)
+.DC Rload 0.00K 100.00K 10.00K
+
+.END
+

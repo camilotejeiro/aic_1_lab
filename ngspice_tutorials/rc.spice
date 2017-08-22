@@ -1,0 +1,15 @@
+* RC Filter
+*  In  Out      Parameters 
+* --------------------
+V1 vin  0       AC 1
+R1 vin  vout    1k
+C1 vout 0       1.59u
+
+* .tran 0   100m 10 u
+
+* Analyses
+* AC analysis, decade scale (log), 41 pts per decade, 10-100KHz
+.ac dec 41 10 100k     
+
+.end
+
