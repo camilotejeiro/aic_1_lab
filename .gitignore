@@ -1,0 +1,8 @@
+# We can't post these (we got them officially from NCSU_CDK), but these are not open.
+downloaded_model_libraries
+device_parameter_libraries
+
+# This is a big one, just link to the official manual online.
+ngspice-manual*
+
+
