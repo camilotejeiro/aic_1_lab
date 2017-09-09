@@ -1,0 +1,7 @@
+I1  n1 n_pos 50uA		
+Q1  n1 n1 0 npn1		;Node Sequence Spec.<c,b,e>
+Q2  n2 n1 0 npn1		;Node Sequence Spec.<c,b,e>
+V2  n2 0 1V		
+V1  n_pos 0 20V		
+
+.end

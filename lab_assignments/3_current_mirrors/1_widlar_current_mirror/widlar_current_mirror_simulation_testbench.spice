@@ -1,0 +1,46 @@
+The Widlar Current Mirror Simulation Testbench 
+
+.INCLUDE widlar_current_mirror_simulation_netlist.spice
+
+* Interactive simulation main entry *
+* Note: which plotter are we using? 
+*   * plot (for quick interactive plots during simulation)
+*       - remember to remove filename from plot command (we are not writing a file) 
+*   * gnuplot (for pint-quality lab report plots)
+*       - remember to add a filename to gnuplot command (we are writing a file)
+.CONTROL
+
+* Make a directory for our output simulation files.
+shell mkdir -p results 
+* Generic prefix for our output files
+set generic_prefix = 'results/widlar_current_mirror_simulation'
+
+echo  '* Operating point analysis: Current match '
+
+OP                      
+print all               
+* Output current over input current (at "no load"): should be 1 for best match.
+print (v2#branch/v1#branch)         
+
+echo '* DC analysis: Voltage dependence of current mirror'
+
+DC V2 0V 5V 0.1V          ; Sweep Collector voltage from 0v to 20v in 0.1v increments.
+
+* set our plot scale (i.e. x axis to the n2 vector)
+setscale n2 
+* plotting properties
+set title = 'DC Analysis: Current Output vs Collector Voltage' 
+set xlabel = 'Collector Volage (V)'
+set ylabel = 'Current Output (uA)'
+set yhigh = 55
+set ylow = 45
+set filename = {$generic_prefix}{'_dc_analysis'}
+gnuplot $filename (v2#branch*-1e+06) ylimit $ylow $yhigh title $title xlabel $xlabel ylabel $ylabel 
+
+echo '* Writing all simulation data to a textfile'
+
+set filetype=ascii
+set filename = {$generic_prefix}{'_results.raw'}
+write $filename
+
+.ENDC

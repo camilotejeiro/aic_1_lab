@@ -1,4 +1,4 @@
-Common-Emitter Amplifier Simulation 
+Common-Emitter Amplifier Simulation Testbench 
 
 .INCLUDE ce_amplifier_simulation_netlist.spice
 
