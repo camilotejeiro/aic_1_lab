@@ -1,0 +1,13 @@
+* Lateral PNP Current Mirror 
+
+.INCLUDE ../../device_parameter_libraries/bipolar_20v_process.spice
+
+* Circuit Elements: Devices
+* dev <nets>              <values>
+* --------------------------------
+I1    n1    0             50uA		
+V2    n2    0             4V		
+V1    n_pos 0             5V		
+XQ1   n1    n2 n1 n_pos 0 split_coll_lat_pnp1   ;Node Sequence Spec.<c1,c2,b,e>
+
+.END

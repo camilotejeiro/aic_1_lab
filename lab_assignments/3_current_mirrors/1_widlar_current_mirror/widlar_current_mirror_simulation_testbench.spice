@@ -20,11 +20,11 @@ echo  '* Operating point analysis: Current match '
 OP                      
 print all               
 * Output current over input current (at "no load"): should be 1 for best match.
-print (v2#branch/v1#branch)         
+print (v2#branch/v1#branch)
 
 echo '* DC analysis: Voltage dependence of current mirror'
 
-DC V2 0V 5V 0.1V          ; Sweep Collector voltage from 0v to 20v in 0.1v increments.
+DC V2 0V 5V 0.1V          ; Sweep Collector voltage from 0v to 5V in 0.1v increments.
 
 * set our plot scale (i.e. x axis to the n2 vector)
 setscale n2 
