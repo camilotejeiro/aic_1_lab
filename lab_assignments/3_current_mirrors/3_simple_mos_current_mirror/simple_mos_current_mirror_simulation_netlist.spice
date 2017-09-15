@@ -1,0 +1,15 @@
+* Simple MOS Current Mirror
+
+.INCLUDE ../../device_parameter_libraries/cmos_hp_gmos10qa_350.spice
+.INCLUDE ../../device_parameter_libraries/cmos_tsmc_cmos035_350.spice
+
+* Circuit Elements: Devices
+* dev <nets>        <values>
+* --------------------------
+V1    n_pos 0       3V		
+I1    n_pos n1      50uA		
+V2    n2    0       1V		
+M1    n1    n1 0 0  hp_gmos10qa_n w=5u l=2u ; alternatively: tsmc_cmos_035n
+M2    n2    n1 0 0  hp_gmos10qa_n w=5u l=2u 
+
+.END
