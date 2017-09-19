@@ -1,0 +1,21 @@
+* Emitter Resistors Negative Feedback Netlist 
+
+.INCLUDE ../../device_parameter_libraries/bipolar_20v_process.spice
+
+* Note: We are using SPICE resistor models which are adequate for our case. 
+* For greater resistance values (>50KR) and high frequency (>1MHz), a lumped 
+* resistor model is more adequate. 
+
+* Circuit Elements: Devices
+* dev <nets>          <values>
+* ------------------------------
+V1    n_pos 0         5V		
+I1    n_pos n1        50uA		
+XQ1   n1    n1 n3 0   npn1
+XQ2   n2    n1 n4 0   npn1	
+V2    n2    0 1V		
+R1    n3    0 6KR	        
+R2    n4    0 6KR           
+
+.END                        
+
