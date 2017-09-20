@@ -15,7 +15,7 @@ echo  '* Operating point analysis: Current match'
 OP                      
 print all               
 
-* Output current over input current (at "no load"): should be 1 for best match.
+* Output current over input current (with 1V load): should be 1 for best match.
 print (v2#branch/v1#branch)
 
 echo '* DC analysis: Voltage dependence of current mirror'

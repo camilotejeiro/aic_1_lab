@@ -1,6 +1,6 @@
-Lateral PNP Current Mirror
+Wilson Current Mirror Simulation Testbench
 
-.INCLUDE lateral_pnp_current_mirror_simulation_netlist.spice
+.INCLUDE wilson_current_mirror_simulation_netlist.spice
 
 * Interactive simulation main entry *
 .CONTROL
@@ -8,18 +8,18 @@ Lateral PNP Current Mirror
 * Make a directory for our output simulation files.
 shell mkdir -p results 
 * Generic prefix for our output files
-set generic_prefix = 'results/lateral_pnp_current_mirror_simulation'
+set generic_prefix = 'results/wilson_current_mirror_simulation'
 
 echo  '* Operating point analysis: Current match '
 
 OP                      
 print all               
-* Output current over constant input current (with 1V load): should be 1 for best match.
-print (v2#branch/50e-06)
+* Output current over input current (with 1V load"): should be 1 for best match.
+print (v2#branch/v1#branch)
 
 echo '* DC analysis: Voltage dependence of current mirror'
 
-DC V2 0V 5V 0.1V          ; Sweep Collector voltage from 0v to 5v in 0.1v increments.
+DC V2 0V 5V 0.1V          ; Sweep Collector voltage from 0v to 5V in 0.1v increments.
 
 * set our plot scale (i.e. x axis to the n2 vector)
 setscale n2 
@@ -27,11 +27,10 @@ setscale n2
 set title = 'DC Analysis: Current Output vs Collector Voltage' 
 set xlabel = 'Collector Volage (V)'
 set ylabel = 'Current Output (uA)'
-set yhigh = 60
-set ylow = 41
+set yhigh = 49.6
+set ylow = 49.2
 set filename = {$generic_prefix}{'_dc_analysis'}
-
-gnuplot $filename (v2#branch*1e+06) ylimit $ylow $yhigh title $title xlabel $xlabel ylabel $ylabel 
+gnuplot $filename (v2#branch*-1e+06) ylimit $ylow $yhigh title $title xlabel $xlabel ylabel $ylabel 
 
 echo '* Writing all simulation data to a textfile'
 
