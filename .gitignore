@@ -1,8 +1,10 @@
 # We can't post these (we got them officially from NCSU_CDK), but these are not open.
 downloaded_model_libraries
-device_parameter_libraries
+cmos_hp_gmos10qa_350.spice
+cmos_tsmc_cmos035_350.spice
 
 # This is a big one, just link to the official manual online.
 ngspice-manual*
 
-
+# Ignore Backup files
+*.bak
