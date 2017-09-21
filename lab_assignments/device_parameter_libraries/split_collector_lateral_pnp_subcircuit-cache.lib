@@ -1,0 +1,25 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#
+# PNP
+#
+DEF PNP Q 0 0 N N 1 F N
+F0 "Q" 100 75 50 H V L BNN
+F1 "PNP" 100 -75 50 H V L TNN
+F2 "" 150 100 50 H V C CNN
+F3 "" -50 0 50 H V C CNN
+F4 "c,b,e" 125 0 50 H I L CNN "Spice_Node_Sequence"
+DRAW
+C 10 0 108 0 1 10 N
+P 2 0 1 10 -50 -75 -50 75 N
+P 2 0 1 10 -50 0 -100 0 N
+P 2 0 1 10 50 -100 -50 -50 N
+P 2 0 1 10 50 100 -50 50 N
+P 5 0 1 10 -10 70 -5 60 -30 60 -15 80 -10 70 F
+X Base b -100 0 0 R 50 50 1 1 I
+X Collector c 50 100 0 D 50 50 1 1 P
+X Emitter e 50 -100 0 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+#End Library

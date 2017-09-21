@@ -1,0 +1,67 @@
+* 20V Bipolar Process NPN and lateral PNP models and parameters (from AIC-1 book)
+* Credit: Designing Analog Chips by Hans Camenzind. 
+
+* NPN subcircuit to better model BJT saturation and breakdown voltage.
+* Inputs: 1 (collector), 2 (base), 3 (emitter), 4 (substrate)
+.SUBCKT npn1 collector base emitter substrate
+* dev   <nets>                   model
+* ---------------------------------------
+Q1      collector base emitter   qn1_npn1
+Q2      substrate collector base qp2_npn1
+D1      base      emitter        dz_npn1
+D2      substrate collector      dcs_npn1
+.ENDS
+
+.MODEL qn1_npn1 NPN ( 
++is     = 3.8e-16   bf  = 220   br  = 0.7   ise = 1.8e-16   ikf = 2.5e-2  
++nkf    = 0.75      ikr = 3e-2  ne  = 1.4   vaf = 60        var = 7     
++rc     = 63.4      rb  = 300   re  = 19.7  xtb = 1.17      xti = 5.4   
++tf     = 1.5e-10   tr  = 6e-9  xtf = 0.3   vtf = 6         itf = 5e-5      
++cje    = 0.21e-12  mje = 0.33  vje = 0.7   isc = 5e-12     kf  = 2e-13 
++af     = 1.4 )
+
+.MODEL qp2_npn1 PNP ( 
++is = 1e-15 bf = 100 cje = 0.175e-12 xti = 5.4 mje = 0.38 vje = 0.6i )
+
+.MODEL dz_npn1 D (   
++is = 1e-18 rs = 250 bv = 5.9 ibv = 10u tcv = 1.8e-4 )
+
+.MODEL dcs_npn1 D (  
++is = 1e-17 rs = 10 cjo = 0.85e-12 m = 0.42 vj = 0.6 ) ; removed isr = 5e-12 (no NGSPICE support)
+
+* Lateral PNP Transistor subcircuit 
+* (modeling substrate currents at saturation and normal operation)
+* Inputs: 1 (collector), 2 (base), 3 (emitter), 4 (substrate)
+.SUBCKT lat_pnp1 collector base emitter substrate
+* dev   <nets>                   model
+* ------------------------------------
+QP11    collector base emitter   qp1_lat_pnp1
+QP21    substrate base collector qp2_lat_pnp1
+QP31    substrate base emitter   qp3_lat_pnp1
+.ENDS
+
+* Split-collector Lateral PNP Transistor subcircuit 
+* (modeling substrate currents at saturation and normal operation)
+* Inputs: 1 (collector1), 1 (collector2), 3 (base), 4 (emitter), 5 (substrate)
+.SUBCKT split_coll_lat_pnp1 collector1 collector2 base emitter substrate
+* dev   <nets>                     model
+* --------------------------------------
+QP11    collector1 base emitter    qp1_lat_pnp1
+QP12    collector2 base emitter    qp1_lat_pnp1 
+QP21    substrate  base collector1 qp2_lat_pnp1 
+QP22    substrate  base collector2 qp2_lat_pnp1
+QP31    substrate  base emitter    qp3_lat_pnp1
+.ENDS
+
+.MODEL qp1_lat_pnp1 PNP  (
++is     = 1e-16     bf  = 89    vaf = 35        ikf = 1.2e-4    nkf = 0.58   
++ise    = 3.4e-15   ne  = 1.6   br  = 5         re  = 100       rc  = 800   
++kf     = 1e-12     af  = 1.2   xti = 5         isc = 1e-12     cje = 0.033e-12 
++mje    = 0.31      vje = 0.75  cjc = 0.175e-12 mjc = 0.38      vjc = 0.6 
++tf     = 5e-8      tr  = 5e-8  xtf = .35       itf = 1.1e-4    vtf = 4 
++xtb    = 2.3e-1   ) 
+
+.MODEL qp2_lat_pnp1 PNP is = 5e-15 bf = 150 re = 100 tf = 5e-8 xti = 5 
+
+.MODEL qp3_lat_pnp1 PNP ( 
++is = 1e-18 bf = 25 cjc = 0.85e-12 mjc = 0.42 vjc = 0.6 xti = 5 re = 100 )
