@@ -1,0 +1,133 @@
+Four Transistor Current Mirror Simulation Testbench (Monte-Carlo)
+
+* ---
+* Netlist
+* ---
+.INCLUDE four_transistor_current_mirror_simulation_netlist.spice
+
+* ---
+* Control (Interactive Interpreter)
+* ---
+.CONTROL
+
+    $ Make a directory for our output simulation files.
+    shell mkdir -p results 
+    $ Generic prefix for our output files
+    set generic_prefix = 'results/four_transistor_current_mirror_simulation'
+    
+    $ Monte Carlo analysis
+    $ ---
+    $ Create some global vectors (i.e. switch to const plot)
+    $ This is the same as just declaring vectors at top of Control block.
+    setplot const
+    $ Number of runs 
+    let monte_carlo_runs = 100
+    let current_run = 0
+
+    $ Create our output plot (collection of vectors which store our simulation data)
+    $ first create a new plot and make it the current plot.
+    setplot new 
+    set curplottitle = 'Monte Carlo Simulation Plot'
+    set curplotname = 'monte_carlo'
+    $ Store it's reference in a variable so we can switch to it later.
+    $ This is the only way to keep track of our plot, changing the name does not work (read bug).
+    set monte_carlo_plot = $curplot
+
+    $ define distributions for random numbers:
+    $ unif: uniform distribution, deviation relativ to nominal value
+    $ aunif: uniform distribution, deviation absolut
+    $ gauss: Gaussian distribution, deviation relativ to nominal value
+    $ agauss: Gaussian distribution, deviation absolut
+    $ limit: if unif. distributed value >=0 then add +avar to nom, else -avar
+    define unif(nom, rvar) (nom + (nom*rvar) * sunif(0))
+    define aunif(nom, avar) (nom + avar * sunif(0))
+    define gauss(nom, rvar, sig) (nom + (nom*rvar)/sig * sgauss(0))
+    define agauss(nom, avar, sig) (nom + avar/sig * sgauss(0))
+    define limit(nom, avar) (nom + ((sgauss(0) >= 0) ? avar : -avar))
+
+    $ Keep track (i.e. make a copy) of the original parametter set.
+    $ As these will be changed during every iteration of our analysis later on.
+    $ Only the major parameters from our bipolar process need to be varied.
+    $ As per book reference: Is, Bf and the capacitances (Cje, Cjc and Cjs).
+    $ For the provided NPN subcircuit: from model qn1_npn1 (Is, Bf, Cje and Cjc), 
+    $ from model dcs_npn1 (Cjo).
+    set npn1_qn1_is=@qn1_npn1[is]
+    set npn1_qn1_bf=@qn1_npn1[bf]
+    set npn1_qn1_cje=@qn1_npn1[cje]
+    set npn1_qn1_vje=@qn1_npn1[vje]
+    set npn1_qn1_mje=@qn1_npn1[mje]
+    set npn1_qn1_cjc=@qn1_npn1[cjc]
+    set npn1_qn1_vjc=@qn1_npn1[vjc]
+    set npn1_qn1_mjc=@qn1_npn1[mjc]
+    set npn1_dcs_cjo=@dcs_npn1[cjo]
+    set npn1_dcs_vj=@dcs_npn1[vj]
+
+    set standard_deviation = 0.1
+    set sigma = 3
+
+    $ Run the simulation loop $
+    dowhile current_run < monte_carlo_runs
+        
+        $ note that run=0 simulates with nominal parameters
+        if current_run > 0
+            altermod @qn1_npn1[is]=gauss($npn1_qn1_is, $standard_deviation, $sigma)
+            altermod @qn1_npn1[bf]=gauss($npn1_qn1_bf, $standard_deviation, $sigma)
+            altermod @qn1_npn1[cje]=gauss($npn1_qn1_cje, $standard_deviation, $sigma)
+            altermod @qn1_npn1[vje]=gauss($npn1_qn1_vje, $standard_deviation, $sigma)
+            altermod @qn1_npn1[mje]=gauss($npn1_qn1_mje, $standard_deviation, $sigma)
+            altermod @qn1_npn1[cjc]=gauss($npn1_qn1_cjc, $standard_deviation, $sigma)
+            altermod @qn1_npn1[vjc]=gauss($npn1_qn1_vjc, $standard_deviation, $sigma)
+            altermod @qn1_npn1[mjc]=gauss($npn1_qn1_mjc, $standard_deviation, $sigma)
+            altermod @dcs_npn1[cjo]=gauss($npn1_dcs_cjo, $standard_deviation, $sigma)
+            altermod @dcs_npn1[vj]=gauss($npn1_dcs_vj, $standard_deviation, $sigma)
+        end
+
+        $ Run our DC analysis with the transistors with modified parameters
+        $ This creates a new plot
+        DC V2 0V 5V 0.1V          
+
+        $ Store a reference of the current plot (with our simulated data vectors) 
+        $ to temp_plot (we are going to switch to our monte_carlo plot)
+        set temp_plot = $curplot
+
+        $ Make 'monte_carlo_plot' our current plot, to copy simulated data vectors to it.  
+        setplot $monte_carlo_plot  
+
+        $ Create a new output vector to store data from our last simulation (from temp_plot)
+        $ Take the vector "current run" (specified by &) and get its value (specified by $) 
+        $ We use the "current_run" value to suffix our vector name.
+        let output_current{_$&current_run}={$temp_plot}.{v2#branch*-1e+06}
+        $ Just to keep track of our voltage scale, this is overwritten every time (we only need one vector for all)
+        let voltage_sweep = {$temp_plot}.n2
+
+        $ We copied all the data we needed: Destroy temporary plot vector data, free-up memory.
+        $ destroy $temp_plot
+
+        $ increment our simulation run counter.
+        let current_run = current_run + 1
+    
+    end 
+    
+    $ Note: At this point our current plot is our monte_carlo_plot 
+
+    $ Plotting
+    $ ---
+    $ plotting properties
+    setscale voltage_sweep 
+    set title = 'Monte Carlo Analysis: Current Output vs Collector Voltage (varying transistor parameters)' 
+    set xlabel = 'Collector Volage (V)'
+    set ylabel = 'Current Output (uA)'
+    set yhigh = 51
+    set ylow = 49
+    set filename = {$generic_prefix}{'_monte_carlo_analysis'}
+    $ gnuplot filename all ylimit $ylow $yhigh title $title xlabel $xlabel ylabel $ylabel 
+    plot all ylimit $ylow $yhigh title $title xlabel $xlabel ylabel $ylabel 
+
+    $ Write Simulation Data $
+    echo '* Writing all simulation data to a textfile'
+
+    set filetype=ascii
+    set filename = {$generic_prefix}{'_results.raw'}
+    write $filename
+
+.ENDC

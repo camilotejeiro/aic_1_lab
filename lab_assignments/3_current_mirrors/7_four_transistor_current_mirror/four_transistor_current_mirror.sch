@@ -1,0 +1,185 @@
+EESchema Schematic File Version 2
+LIBS:Sources_Power
+LIBS:Sources_Signal
+LIBS:Transistors_Bipolar_BJT
+LIBS:four_transistor_current_mirror-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "The Widlar Current Mirror"
+Date "2017-09-09"
+Rev "1"
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L V-PLUS-Supply #PWR1
+U 1 1 59B335BE
+P 3800 3150
+F 0 "#PWR1" H 3800 3300 50  0001 C BNN
+F 1 "V+" H 3800 3225 50  0000 C BNN
+F 2 "" H 3800 3150 60  0001 C CNN
+F 3 "" H 3800 3150 60  0001 C CNN
+	1    3800 3150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L I-IND-DC I1
+U 1 1 59B335E4
+P 4350 3350
+F 0 "I1" H 4500 3350 50  0000 L BNN
+F 1 "50uA" H 4450 3300 50  0000 L TNN
+F 2 "" H 4350 3350 60  0001 C CNN
+F 3 "" H 4350 3350 60  0001 C CNN
+	1    4350 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L NPN Q1
+U 1 1 59B3366D
+P 4400 4150
+F 0 "Q1" H 4500 4225 50  0000 L BNN
+F 1 "npn1" H 4500 4075 50  0000 L TNN
+F 2 "" H 4550 4250 50  0000 C CNN
+F 3 "" H 4350 4150 50  0000 C CNN
+F 4 "c,b,e" H 4525 4150 50  0001 L CNN "Spice_Node_Sequence"
+	1    4400 4150
+	-1   0    0    -1  
+$EndComp
+$Comp
+L NPN Q2
+U 1 1 59B336DB
+P 4900 4150
+F 0 "Q2" H 5000 4225 50  0000 L BNN
+F 1 "npn1" H 5000 4075 50  0000 L TNN
+F 2 "" H 5050 4250 50  0000 C CNN
+F 3 "" H 4850 4150 50  0000 C CNN
+F 4 "c,b,e" H 5025 4150 50  0001 L CNN "Spice_Node_Sequence"
+	1    4900 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L V-IND-DC V2
+U 1 1 59B33A19
+P 5300 3950
+F 0 "V2" H 5350 4050 50  0000 L BNN
+F 1 "1V" H 5350 3850 50  0000 L TNN
+F 2 "" H 5300 3950 60  0001 C CNN
+F 3 "" H 5300 3950 60  0001 C CNN
+	1    5300 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L V-IND-DC V1
+U 1 1 59B33C10
+P 4000 3750
+F 0 "V1" H 3900 3800 50  0000 R BNN
+F 1 "5V" H 3900 3700 50  0000 R TNN
+F 2 "" H 4000 3750 60  0001 C CNN
+F 3 "" H 4000 3750 60  0001 C CNN
+	1    4000 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-Earth-REF #PWR2
+U 1 1 59B33D1B
+P 4650 4550
+F 0 "#PWR2" H 4650 4375 50  0001 C CNN
+F 1 "GND-Earth-REF" H 4650 4450 50  0001 C CNN
+F 2 "" H 4650 4550 50  0001 C CNN
+F 3 "" H 4650 4550 50  0001 C CNN
+	1    4650 4550
+	1    0    0    -1  
+$EndComp
+Text Label 4050 3150 0    60   ~ 0
+n_pos
+Text Label 4650 3950 0    60   ~ 0
+n1
+Text Label 4650 4350 0    60   ~ 0
+0
+Text Label 4950 3550 0    60   ~ 0
+n2
+$Comp
+L NPN Q3
+U 1 1 59C1E4BC
+P 4900 3750
+F 0 "Q3" H 5000 3825 50  0000 L BNN
+F 1 "npn1" H 5000 3675 50  0000 L TNN
+F 2 "" H 5050 3850 50  0000 C CNN
+F 3 "" H 4850 3750 50  0000 C CNN
+F 4 "c,b,e" H 5025 3750 50  0001 L CNN "Spice_Node_Sequence"
+	1    4900 3750
+	1    0    0    -1  
+$EndComp
+Text Label 4650 3550 2    60   ~ 0
+n3
+$Comp
+L NPN Q4
+U 1 1 59C4D7D4
+P 4400 3750
+F 0 "Q4" H 4500 3825 50  0000 L BNN
+F 1 "npn1" H 4500 3675 50  0000 L TNN
+F 2 "" H 4550 3850 50  0000 C CNN
+F 3 "" H 4350 3750 50  0000 C CNN
+F 4 "c,b,e" H 4525 3750 50  0001 L CNN "Spice_Node_Sequence"
+	1    4400 3750
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 4150 4800 4150
+Connection ~ 4650 4150
+Wire Wire Line
+	4950 3850 4950 4050
+Wire Wire Line
+	4950 3950 4650 3950
+Wire Wire Line
+	4650 3950 4650 4150
+Connection ~ 4950 3950
+Wire Wire Line
+	4950 4350 4950 4250
+Wire Wire Line
+	4350 4250 4350 4350
+Connection ~ 4950 4350
+Wire Wire Line
+	4650 4350 4650 4450
+Connection ~ 4650 4350
+Wire Wire Line
+	4000 4350 5300 4350
+Connection ~ 4350 4350
+Wire Wire Line
+	5300 4350 5300 4050
+Wire Wire Line
+	5300 3850 5300 3550
+Wire Wire Line
+	5300 3550 4950 3550
+Wire Wire Line
+	4950 3550 4950 3650
+Wire Wire Line
+	4800 3750 4500 3750
+Wire Wire Line
+	4650 3750 4650 3550
+Wire Wire Line
+	4650 3550 4350 3550
+Wire Wire Line
+	4350 3450 4350 3650
+Connection ~ 4650 3750
+Connection ~ 4350 3550
+Wire Wire Line
+	4350 3850 4350 4050
+Wire Wire Line
+	4350 3250 4350 3150
+Wire Wire Line
+	4350 3150 3900 3150
+Wire Wire Line
+	4000 4350 4000 3850
+Wire Wire Line
+	4000 3650 4000 3150
+Connection ~ 4000 3150
+Text Label 4350 4000 0    60   ~ 0
+n4
+$EndSCHEMATC
