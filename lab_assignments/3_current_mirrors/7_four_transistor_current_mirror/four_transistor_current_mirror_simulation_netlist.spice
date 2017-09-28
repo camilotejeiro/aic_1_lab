@@ -3,7 +3,7 @@
 * ---
 * Subcircuits and Model parametters
 * ---
-.INCLUDE ../../device_parameter_libraries/bipolar_20v_process.spice
+.INCLUDE bipolar_20v_process_npn_montecarlo.spice
 
 * ---
 * Netlist: Circuit Elements (Devices)

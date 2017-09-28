@@ -1,5 +1,4 @@
-* Four Transistor Current Mirror Simulation Testbench (DC)
-* ===
+Four Transistor Current Mirror Simulation Testbench (DC)
 
 * ---
 * Netlist
@@ -40,14 +39,14 @@
     set ylabel = 'Current Output (uA)'
     set yhigh = 51
     set ylow = 49
-    set filename = {$generic_prefix}{'_dc_analysis'}
+    set filename = {$generic_prefix}{'_analysis_dc'}
     gnuplot filename (v2#branch*-1e+06) ylimit $ylow $yhigh title $title xlabel $xlabel ylabel $ylabel 
 
     $ Write Simulation Data $
     echo '* Writing all simulation data to a textfile'
 
     set filetype=ascii
-    set filename = {$generic_prefix}{'_dc_results.raw'}
+    set filename = {$generic_prefix}{'_results_dc.raw'}
     write $filename
 
 .ENDC

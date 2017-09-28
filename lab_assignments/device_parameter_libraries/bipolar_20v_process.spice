@@ -10,7 +10,7 @@ Q1      collector base emitter   qn1_npn1
 Q2      substrate collector base qp2_npn1
 D1      base      emitter        dz_npn1
 D2      substrate collector      dcs_npn1
-.ENDS
+.ENDS npn1
 
 .MODEL qn1_npn1 NPN ( 
 +is     = 3.8e-16   bf  = 220   br  = 0.7   ise = 1.8e-16   ikf = 2.5e-2  
@@ -38,7 +38,7 @@ D2      substrate collector      dcs_npn1
 QP11    collector base emitter   qp1_lat_pnp1
 QP21    substrate base collector qp2_lat_pnp1
 QP31    substrate base emitter   qp3_lat_pnp1
-.ENDS
+.ENDS lat_pnp1 collector
 
 * Split-collector Lateral PNP Transistor subcircuit 
 * (modeling substrate currents at saturation and normal operation)
@@ -51,7 +51,7 @@ QP12    collector2 base emitter    qp1_lat_pnp1
 QP21    substrate  base collector1 qp2_lat_pnp1 
 QP22    substrate  base collector2 qp2_lat_pnp1
 QP31    substrate  base emitter    qp3_lat_pnp1
-.ENDS
+.ENDS split_coll_lat_pnp1 collector1
 
 .MODEL qp1_lat_pnp1 PNP  (
 +is     = 1e-16     bf  = 89    vaf = 35        ikf = 1.2e-4    nkf = 0.58   
