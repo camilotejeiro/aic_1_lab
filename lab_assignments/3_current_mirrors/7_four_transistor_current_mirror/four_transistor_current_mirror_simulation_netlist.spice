@@ -3,6 +3,7 @@
 * ---
 * Subcircuits and Model parametters
 * ---
+* Use our montecarlo-ready custom subcircuit model.
 .INCLUDE bipolar_20v_process_npn_montecarlo.spice
 
 * ---

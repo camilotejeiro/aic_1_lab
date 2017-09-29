@@ -15,7 +15,8 @@ Four Transistor Current Mirror Simulation Testbench (DC)
     $ Generic prefix for our output files
     set generic_prefix = 'results/four_transistor_current_mirror_simulation'
     
-    $ Operating Point analysis $
+    $ Operating Point analysis
+    $ ---
     echo  '* Operating point analysis: Current match '
 
     OP                      
@@ -40,7 +41,7 @@ Four Transistor Current Mirror Simulation Testbench (DC)
     set yhigh = 51
     set ylow = 49
     set filename = {$generic_prefix}{'_analysis_dc'}
-    gnuplot filename (v2#branch*-1e+06) ylimit $ylow $yhigh title $title xlabel $xlabel ylabel $ylabel 
+    gnuplot $filename (v2#branch*-1e+06) ylimit $ylow $yhigh title $title xlabel $xlabel ylabel $ylabel 
 
     $ Write Simulation Data $
     echo '* Writing all simulation data to a textfile'

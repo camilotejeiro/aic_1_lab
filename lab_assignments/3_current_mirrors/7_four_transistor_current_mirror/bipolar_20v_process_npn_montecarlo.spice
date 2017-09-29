@@ -1,6 +1,10 @@
 * 20V Bipolar NPN Devices Modified for Mismatch Monte-carlo Simulation 
 * Credit: Designing Analog Chips by Hans Camenzind. 
+* Thoroughly commented for understanding (feel free to remove comments).
 
+* ---
+* Subcircuits and Model parametters
+* ---
 * NPN subcircuit to better model BJT saturation and breakdown voltage.
 * Note: we have included model declarations within the subcircuit to support 
 * varying parameters for each transistor in the netlist individually 

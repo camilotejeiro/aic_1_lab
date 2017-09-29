@@ -1,4 +1,5 @@
 Four Transistor Current Mirror Simulation Testbench (Monte-Carlo)
+$ Thoroughly commented for understanding (feel free to remove comments) 
 
 * ---
 * Netlist
@@ -26,7 +27,7 @@ Four Transistor Current Mirror Simulation Testbench (Monte-Carlo)
     $ Monte-Carlo Simulation Properties
     let monte_carlo_runs = 100
     let current_run = 0
-    set standard_deviation = 0.05
+    set relative_variation = 0.05
     set sigma = 3
 
     $ Keep track (i.e. make a copy) of the original parametter set (just use XQ1).
@@ -54,10 +55,10 @@ Four Transistor Current Mirror Simulation Testbench (Monte-Carlo)
     set monte_carlo_plot = $curplot
 
     $ define distributions for random numbers:
-    $ unif: uniform distribution, deviation relativ to nominal value
-    $ aunif: uniform distribution, deviation absolut
-    $ gauss: Gaussian distribution, deviation relativ to nominal value
-    $ agauss: Gaussian distribution, deviation absolut
+    $ unif: uniform distribution, deviation relative to nominal value
+    $ aunif: uniform distribution, deviation absolute
+    $ gauss: Gaussian distribution, deviation relative to nominal value
+    $ agauss: Gaussian distribution, deviation absolute
     $ limit: if unif. distributed value >=0 then add +avar to nom, else -avar
     define unif(nom, rvar) (nom + (nom*rvar) * sunif(0))
     define aunif(nom, avar) (nom + avar * sunif(0))
@@ -73,29 +74,29 @@ Four Transistor Current Mirror Simulation Testbench (Monte-Carlo)
         $ We are altering capacitances, but they should not matter much (DC only)
         if current_run > 0
             $ XQ1
-            altermod @xq1:qn1_npn1[is] = gauss(npn1_qn1_is, $standard_deviation, $sigma)
-            altermod @xq1:qn1_npn1[bf] = gauss(npn1_qn1_bf, $standard_deviation, $sigma)
-            altermod @xq1:qn1_npn1[cje] = gauss(npn1_qn1_cje, $standard_deviation, $sigma)
-            altermod @xq1:qn1_npn1[cjc] = gauss(npn1_qn1_cjc, $standard_deviation, $sigma)
-            altermod @xq1:dcs_npn1[cjo] = gauss(npn1_dcs_cjo, $standard_deviation, $sigma)
+            altermod @xq1:qn1_npn1[is] = gauss(npn1_qn1_is, $relative_variation, $sigma)
+            altermod @xq1:qn1_npn1[bf] = gauss(npn1_qn1_bf, $relative_variation, $sigma)
+            altermod @xq1:qn1_npn1[cje] = gauss(npn1_qn1_cje, $relative_variation, $sigma)
+            altermod @xq1:qn1_npn1[cjc] = gauss(npn1_qn1_cjc, $relative_variation, $sigma)
+            altermod @xq1:dcs_npn1[cjo] = gauss(npn1_dcs_cjo, $relative_variation, $sigma)
             $ XQ2
-            altermod @xq2:qn1_npn1[is] = gauss(npn1_qn1_is, $standard_deviation, $sigma)
-            altermod @xq2:qn1_npn1[bf] = gauss(npn1_qn1_bf, $standard_deviation, $sigma)
-            altermod @xq2:qn1_npn1[cje] = gauss(npn1_qn1_cje, $standard_deviation, $sigma)
-            altermod @xq2:qn1_npn1[cjc] = gauss(npn1_qn1_cjc, $standard_deviation, $sigma)
-            altermod @xq2:dcs_npn1[cjo] = gauss(npn1_dcs_cjo, $standard_deviation, $sigma)
+            altermod @xq2:qn1_npn1[is] = gauss(npn1_qn1_is, $relative_variation, $sigma)
+            altermod @xq2:qn1_npn1[bf] = gauss(npn1_qn1_bf, $relative_variation, $sigma)
+            altermod @xq2:qn1_npn1[cje] = gauss(npn1_qn1_cje, $relative_variation, $sigma)
+            altermod @xq2:qn1_npn1[cjc] = gauss(npn1_qn1_cjc, $relative_variation, $sigma)
+            altermod @xq2:dcs_npn1[cjo] = gauss(npn1_dcs_cjo, $relative_variation, $sigma)
             $ XQ3
-            altermod @xq3:qn1_npn1[is] = gauss(npn1_qn1_is, $standard_deviation, $sigma)
-            altermod @xq3:qn1_npn1[bf] = gauss(npn1_qn1_bf, $standard_deviation, $sigma)
-            altermod @xq3:qn1_npn1[cje] = gauss(npn1_qn1_cje, $standard_deviation, $sigma)
-            altermod @xq3:qn1_npn1[cjc] = gauss(npn1_qn1_cjc, $standard_deviation, $sigma)
-            altermod @xq3:dcs_npn1[cjo] = gauss(npn1_dcs_cjo, $standard_deviation, $sigma)
+            altermod @xq3:qn1_npn1[is] = gauss(npn1_qn1_is, $relative_variation, $sigma)
+            altermod @xq3:qn1_npn1[bf] = gauss(npn1_qn1_bf, $relative_variation, $sigma)
+            altermod @xq3:qn1_npn1[cje] = gauss(npn1_qn1_cje, $relative_variation, $sigma)
+            altermod @xq3:qn1_npn1[cjc] = gauss(npn1_qn1_cjc, $relative_variation, $sigma)
+            altermod @xq3:dcs_npn1[cjo] = gauss(npn1_dcs_cjo, $relative_variation, $sigma)
             $ XQ4 
-            altermod @xq4:qn1_npn1[is] = gauss(npn1_qn1_is, $standard_deviation, $sigma)
-            altermod @xq4:qn1_npn1[bf] = gauss(npn1_qn1_bf, $standard_deviation, $sigma)
-            altermod @xq4:qn1_npn1[cje] = gauss(npn1_qn1_cje, $standard_deviation, $sigma)
-            altermod @xq4:qn1_npn1[cjc] = gauss(npn1_qn1_cjc, $standard_deviation, $sigma)
-            altermod @xq4:dcs_npn1[cjo] = gauss(npn1_dcs_cjo, $standard_deviation, $sigma)
+            altermod @xq4:qn1_npn1[is] = gauss(npn1_qn1_is, $relative_variation, $sigma)
+            altermod @xq4:qn1_npn1[bf] = gauss(npn1_qn1_bf, $relative_variation, $sigma)
+            altermod @xq4:qn1_npn1[cje] = gauss(npn1_qn1_cje, $relative_variation, $sigma)
+            altermod @xq4:qn1_npn1[cjc] = gauss(npn1_qn1_cjc, $relative_variation, $sigma)
+            altermod @xq4:dcs_npn1[cjo] = gauss(npn1_dcs_cjo, $relative_variation, $sigma)
         end
 
         $ Run our DC analysis with the transistors with modified parameters

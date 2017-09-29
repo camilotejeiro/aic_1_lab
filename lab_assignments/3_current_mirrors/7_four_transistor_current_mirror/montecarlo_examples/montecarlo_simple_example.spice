@@ -1,4 +1,6 @@
-* Effecting a Monte Carlo calculation in ngspice
+Effecting a Monte Carlo calculation in ngspice
+* Taken as verbatim reference from NGSPICE examples 
+* Thoroughly commented for understanding (feel free to remove comments).
 
 * ---
 * Netlist

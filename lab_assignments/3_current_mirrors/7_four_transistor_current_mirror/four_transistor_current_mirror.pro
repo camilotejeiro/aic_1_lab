@@ -1,4 +1,4 @@
-update=Sat 09 Sep 2017 09:27:27 AM JST
+update=Fri 29 Sep 2017 11:24:36 AM JST
 version=1
 last_client=eeschema
 [general]
@@ -34,3 +34,13 @@ LibDir=/media/camilo/data/workspaces/kicad_common/cat_library/generic_schematic_
 LibName1=Sources_Power
 LibName2=Sources_Signal
 LibName3=Transistors_Bipolar_BJT
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=/media/camilo/data/workspaces/academia/self_study/aic_1-analog_integrated_circuits/lab_assignments/3_current_mirrors/7_four_transistor_current_mirror/
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60

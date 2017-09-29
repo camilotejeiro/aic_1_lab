@@ -1,5 +1,7 @@
 Perform Monte Carlo simulation in ngspice
 * 25 stage Ring-Osc. BSIM3
+* Taken as verbatim reference from NGSPICE examples 
+* Thoroughly commented for understanding (feel free to remove comments).
 
 * ---
 * Netlist
