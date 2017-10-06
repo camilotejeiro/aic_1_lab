@@ -1,0 +1,23 @@
+* MOS Current Mirror with Cascode Stage Simulation Netlist
+
+* ---
+* Subcircuits and Model parametters
+* ---
+* Use our montecarlo-ready custom subcircuits with our models.
+* We can use these for both DC and montecarlo analyses.
+.INCLUDE cmos_350_process_nmos_montecarlo.spice
+
+* ---
+* Netlist: Circuit Elements (Devices)
+* ---
+* dev <nets>          <values>
+* --------------------------------------------------------
+V1    n_pos 0         3V		
+I1    n_pos n3        50uA		
+R1    n3    n1        10KR		
+XM1   n1    n1 0  0   hp_gmos10qa_n width=20u length=3u    ; alternatively: tsmc_cmos_035n
+XM2   n4    n1 0  0   hp_gmos10qa_n width=20u length=3u 
+XM3   n2    n3 n4 0   hp_gmos10qa_n width=10u length=0.35u
+V2    n2    0         1V		
+
+.END

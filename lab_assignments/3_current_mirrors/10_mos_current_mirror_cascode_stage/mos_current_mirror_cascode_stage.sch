@@ -1,0 +1,188 @@
+EESchema Schematic File Version 2
+LIBS:RCL
+LIBS:Sources_Power
+LIBS:Sources_Signal
+LIBS:Transistors_MOSFET
+LIBS:mos_current_mirror_cascode_stage-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L V-PLUS-Supply #PWR1
+U 1 1 59BA2C36
+P 5100 2550
+F 0 "#PWR1" H 5100 2700 50  0001 C BNN
+F 1 "V+" H 5100 2625 50  0000 C BNN
+F 2 "" H 5100 2550 60  0001 C CNN
+F 3 "" H 5100 2550 60  0001 C CNN
+	1    5100 2550
+	0    -1   -1   0   
+$EndComp
+$Comp
+L V-IND-DC V1
+U 1 1 59BA2C53
+P 5300 3150
+F 0 "V1" H 5200 3200 50  0000 R BNN
+F 1 "3V" H 5200 3100 50  0000 R TNN
+F 2 "" H 5300 3150 60  0001 C CNN
+F 3 "" H 5300 3150 60  0001 C CNN
+	1    5300 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L I-IND-DC I1
+U 1 1 59BA2C9D
+P 5650 2750
+F 0 "I1" H 5800 2800 50  0000 C BNN
+F 1 "50uA" H 5850 2750 50  0000 C TNN
+F 2 "" H 5650 2750 60  0001 C CNN
+F 3 "" H 5650 2750 60  0001 C CNN
+	1    5650 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND-Earth-REF #PWR2
+U 1 1 59BA2F61
+P 6000 3950
+F 0 "#PWR2" H 6000 3775 50  0001 C CNN
+F 1 "GND-Earth-REF" H 6000 3850 50  0001 C CNN
+F 2 "" H 6000 3950 50  0001 C CNN
+F 3 "" H 6000 3950 50  0001 C CNN
+	1    6000 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L V-IND-DC V2
+U 1 1 59BA314C
+P 6700 3150
+F 0 "V2" H 6800 3200 50  0000 L BNN
+F 1 "1V" H 6800 3100 50  0000 L TNN
+F 2 "" H 6700 3150 60  0001 C CNN
+F 3 "" H 6700 3150 60  0001 C CNN
+	1    6700 3150
+	1    0    0    -1  
+$EndComp
+Text Label 5350 2550 0    60   ~ 0
+n_pos
+Text Label 5650 3350 0    60   ~ 0
+n1
+Text Label 6350 2700 0    60   ~ 0
+n2
+$Comp
+L NCH-ENH-4TERM M1
+U 1 1 59BA401F
+P 5750 3550
+F 0 "M1" H 5750 3700 50  0000 C CNN
+F 1 "W=20u L=3u " H 5700 3400 40  0000 C CNN
+F 2 "" H 5750 3550 60  0001 C CNN
+F 3 "" H 5850 3625 60  0001 C CNN
+F 4 "d,g,s,b" H 5875 3550 60  0001 L CNN "Spice_Node_Sequence"
+	1    5750 3550
+	-1   0    0    -1  
+$EndComp
+$Comp
+L NCH-ENH-4TERM M2
+U 1 1 59BA45FE
+P 6250 3550
+F 0 "M2" H 6250 3700 50  0000 C CNN
+F 1 "W=20u L=3u " H 6250 3400 40  0000 C CNN
+F 2 "" H 6250 3550 60  0001 C CNN
+F 3 "" H 6350 3625 60  0001 C CNN
+F 4 "d,g,s,b" H 6375 3550 60  0001 L CNN "Spice_Node_Sequence"
+	1    6250 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L R-AME R1
+U 1 1 59D45C21
+P 5650 3150
+F 0 "R1" V 5650 3050 50  0000 C CNN
+F 1 "10KR" V 5650 3300 50  0000 C CNN
+F 2 "" H 5680 3300 20  0001 C CNN
+F 3 "" H 5670 3150 60  0000 C CNN
+	1    5650 3150
+	0    1    1    0   
+$EndComp
+$Comp
+L NCH-ENH-4TERM M3
+U 1 1 59D45D02
+P 6250 2900
+F 0 "M3" H 6250 3050 50  0000 C CNN
+F 1 "W=10u L=0.35u " H 6250 2750 40  0000 C CNN
+F 2 "" H 6250 2900 60  0001 C CNN
+F 3 "" H 6350 2975 60  0001 C CNN
+F 4 "d,g,s,b" H 6375 2900 60  0001 L CNN "Spice_Node_Sequence"
+	1    6250 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5650 3550 5650 3750
+Wire Wire Line
+	5300 3750 6700 3750
+Wire Wire Line
+	6350 3550 6350 3750
+Connection ~ 6350 3750
+Wire Wire Line
+	6000 3750 6000 3850
+Connection ~ 6000 3750
+Connection ~ 6350 3600
+Wire Wire Line
+	6350 2900 6450 2900
+Wire Wire Line
+	6450 2900 6450 3600
+Wire Wire Line
+	6450 3600 6350 3600
+Wire Wire Line
+	6350 3500 6350 2950
+Wire Wire Line
+	6150 2950 5650 2950
+Wire Wire Line
+	5650 2850 5650 3050
+Connection ~ 5650 2950
+Wire Wire Line
+	5650 3250 5650 3500
+Connection ~ 5650 3600
+Wire Wire Line
+	5850 3600 6150 3600
+Wire Wire Line
+	6000 3600 6000 3350
+Wire Wire Line
+	6000 3350 5650 3350
+Connection ~ 5650 3350
+Connection ~ 6000 3600
+Wire Wire Line
+	5300 3250 5300 3750
+Connection ~ 5650 3750
+Wire Wire Line
+	5300 3050 5300 2550
+Wire Wire Line
+	5200 2550 5650 2550
+Wire Wire Line
+	5650 2550 5650 2650
+Connection ~ 5300 2550
+Wire Wire Line
+	6700 3050 6700 2700
+Wire Wire Line
+	6700 2700 6350 2700
+Wire Wire Line
+	6350 2700 6350 2850
+Wire Wire Line
+	6700 3750 6700 3250
+Text Label 6000 3850 0    60   ~ 0
+0
+Text Label 5650 2950 0    60   ~ 0
+n3
+Text Label 6350 3350 2    60   ~ 0
+n4
+$EndSCHEMATC

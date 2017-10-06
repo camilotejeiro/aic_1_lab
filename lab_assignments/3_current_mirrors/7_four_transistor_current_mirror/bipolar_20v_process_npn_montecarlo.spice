@@ -3,7 +3,7 @@
 * Thoroughly commented for understanding (feel free to remove comments).
 
 * ---
-* Subcircuits and Model parametters
+* Subcircuits and Model parameters
 * ---
 * NPN subcircuit to better model BJT saturation and breakdown voltage.
 * Note: we have included model declarations within the subcircuit to support 
