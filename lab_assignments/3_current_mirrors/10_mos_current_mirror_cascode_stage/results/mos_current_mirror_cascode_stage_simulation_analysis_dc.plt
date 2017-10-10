@@ -1,6 +1,6 @@
 set terminal X11
 set title "dc analysis: current output vs drain voltage"
-set xlabel "drain volage (v)"
+set xlabel "drain voltage (v)"
 set ylabel "current output (ua)"
 set grid
 unset logscale x 

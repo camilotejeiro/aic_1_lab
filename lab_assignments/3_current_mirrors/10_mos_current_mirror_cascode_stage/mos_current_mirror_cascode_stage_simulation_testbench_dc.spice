@@ -36,7 +36,7 @@ MOS Current Mirror With Cascode Stage Simulation Testbench (DC)
     $ set our plot scale (i.e. x axis to the n2 vector)
     setscale n2 
     set title = 'DC Analysis: Current Output vs Drain Voltage' 
-    set xlabel = 'Drain Volage (V)'
+    set xlabel = 'Drain Voltage (V)'
     set ylabel = 'Current Output (uA)'
     set yhigh = 49.9
     set ylow = 49.1

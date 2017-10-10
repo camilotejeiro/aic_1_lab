@@ -1,6 +1,6 @@
-update=Wed 04 Oct 2017 12:56:25 PM JST
+update=Fri 06 Oct 2017 04:46:21 PM JST
 version=1
-last_client=kicad
+last_client=eeschema
 [general]
 version=1
 RootSch=
@@ -35,3 +35,13 @@ LibName1=RCL
 LibName2=Sources_Power
 LibName3=Sources_Signal
 LibName4=Transistors_MOSFET
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=/media/camilo/data/workspaces/academia/self_study/aic_1-analog_integrated_circuits/lab_assignments/3_current_mirrors/10_mos_current_mirror_cascode_stage/
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60

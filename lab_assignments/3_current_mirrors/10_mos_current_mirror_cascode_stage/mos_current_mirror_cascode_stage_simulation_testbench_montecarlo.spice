@@ -118,7 +118,7 @@ MOS Current Mirror With Cascode Stage Simulation Testbench (Monte-Carlo)
     $ plotting properties
     setscale voltage_sweep 
     set title = 'Monte Carlo Analysis (Transistors Mismatch): Current Output vs Drain Voltage'
-    set xlabel = 'Drain Volage (V)'
+    set xlabel = 'Drain Voltage (V)'
     set ylabel = 'Current Output (uA)'
     set yhigh = 65
     set ylow = 35
