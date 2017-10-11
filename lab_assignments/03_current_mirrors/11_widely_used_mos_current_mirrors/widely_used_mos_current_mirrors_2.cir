@@ -1,0 +1,17 @@
+* /media/camilo/data/workspaces/academia/self_study/aic_1-analog_integrated_circuits/lab_assignments/03_current_mirrors/11_widely_used_mos_current_mirrors/widely_used_mos_current_mirrors_2.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 11 Oct 2017 11:26:16 AM JST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+I1  /n_pos /n1 50uA		
+V2  /n2 /0 1V		
+V1  /n_pos /0 3V		
+M1  /n1 /n1 /n3 /0 W=100u L=2u		;Node Sequence Spec.<d,g,s,b>
+M3  /n2 /n1 /n4 /0 W=100u L=2u		;Node Sequence Spec.<d,g,s,b>
+M2  /n3 /n1 /0 /0 W=10u L=5u		;Node Sequence Spec.<d,g,s,b>
+M4  /n4 /n1 /0 /0 W=10u L=5u		;Node Sequence Spec.<d,g,s,b>
+
+.end

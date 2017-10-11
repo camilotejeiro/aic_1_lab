@@ -1,0 +1,68 @@
+Widely Used MOS Current Mirrors Simulation Testbench (DC)
+
+* --- 
+* Parameters (Constants)
+* ---
+* Only available for non-interactive (netlist) section
+.PARAM     circuit_number_param = 3                         
+* Only available for interactive (control) section
+.CSPARAM   circuit_number_csparam = {circuit_number_param} 
+
+* ---
+* Netlist
+* ---
+.IF (circuit_number_param == 1)
+    .INCLUDE widely_used_mos_current_mirrors_simulation_netlist_1.spice
+.ELSEIF (circuit_number_param == 2)
+    .INCLUDE widely_used_mos_current_mirrors_simulation_netlist_2.spice
+.ELSE
+    .INCLUDE widely_used_mos_current_mirrors_simulation_netlist_3.spice
+.ENDIF
+
+* ---
+* Control (Interactive Interpreter)
+* ---
+.CONTROL
+
+    $ Make a directory for our output simulation files.
+    shell mkdir -p results 
+    $ Generic prefix for our output files
+    set generic_prefix = {'results/widely_used_mos_current_mirrors_'}{$&circuit_number_csparam}{'_simulation'}
+    
+    $ Operating Point analysis
+    $ ---
+    echo  '* Operating point analysis: Current match '
+
+    OP                      
+    print all               
+    $ Output current over input current (with 1V load"): should be 1 for best match.
+    print (v2#branch/(-50e-06))
+
+    $ DC Analysis
+    $ ---
+    echo '* DC analysis: Voltage dependence of current mirror'
+
+    DC V2 0V 3V 0.1V          ; Sweep Drain voltage from 0v to 3V in 0.1v increments.
+
+    $ Plotting
+    $ ---
+    $ plotting properties
+    $ set our plot scale (i.e. x axis to the n2 vector)
+    setscale n2 
+    set title = 'DC Analysis: Current Output vs Drain Voltage' 
+    set xlabel = 'Drain Voltage (V)'
+    set ylabel = 'Current Output (uA)'
+    set yhigh = 50.4
+    set ylow = 49.6
+    set filename = {$generic_prefix}{'_analysis_dc'}
+    gnuplot $filename (v2#branch*-1e+06) ylimit $ylow $yhigh title $title xlabel $xlabel ylabel $ylabel
+
+
+    $ Write Simulation Data $
+    echo '* Writing all simulation data to a textfile'
+
+    set filetype=ascii
+    set filename = {$generic_prefix}{'_results_dc.raw'}
+    write $filename
+
+.ENDC

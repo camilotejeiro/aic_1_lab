@@ -3,14 +3,15 @@ LIBS:Sources_Power
 LIBS:Sources_Signal
 LIBS:Transistors_Bipolar_BJT
 LIBS:RCL
+LIBS:emitter_resistors_negative_feedback-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "The Widlar Current Mirror"
+Title ""
 Date "2017-09-09"
-Rev "1"
+Rev ""
 Comp ""
 Comment1 ""
 Comment2 ""

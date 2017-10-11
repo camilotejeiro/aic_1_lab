@@ -1,0 +1,24 @@
+* Widely Used MOS Current Mirrors Simulation Netlist: 3rd circuit (3-25) 
+* Best Performance 
+
+* ---
+* Subcircuits and Model parametters
+* ---
+.INCLUDE ../../device_parameter_libraries/cmos_hp_gmos10qa_350.spice
+.INCLUDE ../../device_parameter_libraries/cmos_tsmc_cmos035_350.spice
+
+* ---
+* Netlist: Circuit Elements (Devices)
+* ---
+* dev <nets>            <values>
+* -----------------------------------------------
+V1    n_pos 0           3V		
+I1    n_pos n3          50uA		
+R1    n3    n1          5KR		
+M1    n1    n3 n4 0     hp_gmos10qa_n w=100u l=2u   ; alternatively: tsmc_cmos_035n	
+M3    n2    n3 n5 0     hp_gmos10qa_n w=100u l=2u		
+M2    n4    n1 0  0     hp_gmos10qa_n w=20u  l=5u		
+M4    n5    n1 0  0     hp_gmos10qa_n w=20u  l=5u		
+V2    n2    0           1V		
+
+.END

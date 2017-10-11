@@ -1,0 +1,23 @@
+* Widely Used MOS Current Mirrors Simulation Netlist: 2nd circuit (3-24) 
+* Fewer devices, same performance 
+
+* ---
+* Subcircuits and Model parametters
+* ---
+.INCLUDE ../../device_parameter_libraries/cmos_hp_gmos10qa_350.spice
+.INCLUDE ../../device_parameter_libraries/cmos_tsmc_cmos035_350.spice
+
+* ---
+* Netlist: Circuit Elements (Devices)
+* ---
+* dev <nets>            <values>
+* -----------------------------------------------
+V1    n_pos 0           3V		
+I1    n_pos n1          50uA		
+M1    n1    n1 n3 0     hp_gmos10qa_n w=100u l=2u   ; alternatively: tsmc_cmos_035n	
+M3    n2    n1 n4 0     hp_gmos10qa_n w=100u l=2u		
+M2    n3    n1 0  0     hp_gmos10qa_n w=10u  l=5u		
+M4    n4    n1 0  0     hp_gmos10qa_n w=10u  l=5u		
+V2    n2    0           1V		
+
+.END
