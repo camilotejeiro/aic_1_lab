@@ -1,4 +1,4 @@
-update=Wed 11 Oct 2017 10:39:26 AM JST
+update=Wed 11 Oct 2017 02:35:04 PM JST
 version=1
 last_client=kicad
 [general]
@@ -27,16 +27,6 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=/media/camilo/data/workspaces/academia/self_study/aic_1-analog_integrated_circuits/lab_assignments/3_current_mirrors/7_four_transistor_current_mirror/
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
 [eeschema]
 version=1
 LibDir=/media/camilo/data/workspaces/kicad_common/cat_library/generic_schematic_symbols
@@ -46,3 +36,13 @@ LibName2=Sources_Signal
 LibName3=Transistors_Bipolar_BJT
 LibName4=RCL
 LibName5=Transistors_MOSFET
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=/media/camilo/data/workspaces/academia/self_study/aic_1-analog_integrated_circuits/lab_assignments/03_current_mirrors/11_widely_used_mos_current_mirrors/
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60

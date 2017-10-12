@@ -4,7 +4,8 @@ Widely Used MOS Current Mirrors Simulation Testbench (DC)
 * Parameters (Constants)
 * ---
 * Only available for non-interactive (netlist) section
-.PARAM     circuit_number_param = 3                         
+* Select circuit to simulate
+.PARAM     circuit_number_param = 1                         
 * Only available for interactive (control) section
 .CSPARAM   circuit_number_csparam = {circuit_number_param} 
 

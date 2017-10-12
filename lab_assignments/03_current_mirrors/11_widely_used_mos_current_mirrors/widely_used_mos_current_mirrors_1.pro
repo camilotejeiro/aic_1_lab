@@ -1,6 +1,6 @@
-update=Fri 06 Oct 2017 04:46:21 PM JST
+update=Wed 11 Oct 2017 02:34:09 PM JST
 version=1
-last_client=eeschema
+last_client=kicad
 [general]
 version=1
 RootSch=
@@ -38,7 +38,7 @@ LibName4=Transistors_MOSFET
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=/media/camilo/data/workspaces/academia/self_study/aic_1-analog_integrated_circuits/lab_assignments/3_current_mirrors/10_mos_current_mirror_cascode_stage/
+PlotDirectoryName=/media/camilo/data/workspaces/academia/self_study/aic_1-analog_integrated_circuits/lab_assignments/03_current_mirrors/11_widely_used_mos_current_mirrors/
 SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=
